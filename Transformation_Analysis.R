@@ -196,34 +196,42 @@ factors$Sample_Type[grep("SW48", factors$Sample_Name)] = "Surface Water"
 trans.pro$Type = factors$Sample_Type
 trans.melt = melt(trans.pro, id.vars = c("Type"))
 
-ggplot(trans.melt, aes(x = Type, y = value, group = Type))+
-  geom_boxplot(aes(color = Type))+
-  facet_wrap(.~variable, ncol = 3, scales = "free_y")+
-  ylab("Proportion of AA Transformations (%)")+
-  xlab(NULL)+
-  scale_color_manual(values = c("dodgerblue4", "firebrick4"))+ # Remove this line if you want to run more samples
-  ggtitle("AA Proportion by water type")+
-  theme_bw()+
-  theme(text = element_text(size = 14),
-        axis.text.x = element_text(colour = "black"),
-        axis.text.y = element_text(colour = "black"),
-        panel.border = element_rect(size = 1, colour = "black"),
-        panel.grid = element_blank(),
-        legend.position = "none")
+pdf("AA Transformations by Water Type.pdf")
+print(
+  ggplot(trans.melt, aes(x = Type, y = value, group = Type))+
+    geom_boxplot(aes(color = Type))+
+    facet_wrap(.~variable, ncol = 3, scales = "free_y")+
+    ylab("Proportion of AA Transformations (%)")+
+    xlab(NULL)+
+    scale_color_manual(values = c("dodgerblue4", "firebrick4"))+ # Remove this line if you want to run more samples
+    ggtitle("AA Proportion by water type")+
+    theme_bw()+
+    theme(text = element_text(size = 14),
+          axis.text.x = element_text(colour = "black", angle = 12.5, hjust = 1, vjust = 1),
+          axis.text.y = element_text(colour = "black"),
+          panel.border = element_rect(size = 1, colour = "black"),
+          panel.grid = element_blank(),
+          legend.position = "none")
+)
+dev.off()
 
 
 trans.melt$variable = factor(trans.melt$variable, 
                              levels = unique(trans.melt$variable)[order(colMeans(trans.pro[,-22]), decreasing = T)])
 
-ggplot(trans.melt, aes(x = variable, y = value, group = variable))+
-  geom_boxplot()+
-  ylab("Proportion of AA Transformations (%)")+
-  xlab(NULL)+
-  ggtitle("AA Proportions")+
-  theme_bw()+
-  theme(text = element_text(size = 14),
-        axis.text.x = element_text(colour = "black", angle = 37.5, hjust = 1, vjust = 1),
-        axis.text.y = element_text(colour = "black"),
-        panel.border = element_rect(size = 1, colour = "black"),
-        panel.grid = element_blank(),
-        legend.position = "none")
+pdf("Comparison of AA Transformations.pdf")
+print(
+  ggplot(trans.melt, aes(x = variable, y = value, group = variable))+
+    geom_boxplot()+
+    ylab("Proportion of AA Transformations (%)")+
+    xlab(NULL)+
+    ggtitle("AA Proportions")+
+    theme_bw()+
+    theme(text = element_text(size = 14),
+          axis.text.x = element_text(colour = "black", angle = 37.5, hjust = 1, vjust = 1),
+          axis.text.y = element_text(colour = "black"),
+          panel.border = element_rect(size = 1, colour = "black"),
+          panel.grid = element_blank(),
+          legend.position = "none")
+)
+dev.off()

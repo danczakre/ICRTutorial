@@ -315,15 +315,19 @@ for(i in 1:ncol(Y_met)){
   Y_met_av$value[i] = mean(temp)
 }
 
-ggplot(Y_met_av, aes(x = Sample, y = value, group = Type))+
-  geom_point(aes(color = Type))+
-  geom_line(aes(color = Type))+
-  xlab("Time Point")+
-  ylab(expression("Y"[csi]))+
-  scale_color_manual(values = c("dodgerblue4", "firebrick4"))+
-  theme_bw()+
-  theme(text = element_text(size = 14),
-        axis.text.x = element_text(colour = "black"),
-        axis.text.y = element_text(colour = "black"),
-        panel.border = element_rect(size = 1, colour = "black"),
-        panel.grid = element_blank())
+pdf("Y-csi thru time.pdf", height = 3, width = 10)
+print(
+  ggplot(Y_met_av, aes(x = Sample, y = value, group = Type))+
+    geom_point(aes(color = Type))+
+    geom_line(aes(color = Type))+
+    xlab("Time Point")+
+    ylab(expression("Y"[csi]))+
+    scale_color_manual(values = c("dodgerblue4", "firebrick4"))+
+    theme_bw()+
+    theme(text = element_text(size = 14),
+          axis.text.x = element_text(colour = "black"),
+          axis.text.y = element_text(colour = "black"),
+          panel.border = element_rect(size = 1, colour = "black"),
+          panel.grid = element_blank())
+)
+dev.off()

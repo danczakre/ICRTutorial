@@ -1,6 +1,6 @@
-# An ICR Tutorial
+# An FTICR-MS Data Analysis Tutorial
 This respository contains all the files and scripts necessary to participate in the FTICR-MS data analysis demonstration at the SBR SFA Community Workshop 2019. 
-Moreover, this repository will hopefully provide insight into FTICR-MS analysis more broadly.
+Moreover, this repository will hopefully provide insight into FTICR-MS analysis more broadly. This will not outline all possible analysis types, but rather investigate only a few. If there are any questions, please refer them to robert.danczak@pnnl.gov.
 
 Here is a brief outline of the included files:
 

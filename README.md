@@ -13,3 +13,5 @@ Here is a brief outline of the included files:
 Such analyses are outlined in <a href=https://doi.org/10.1007/s11306-006-0029-z>Breitling et al., 2006 - Metabolomics</a> and <a href=https://doi.org/10.1002/2017JG003967>Graham et al., 2017 - JGR: Biogeosciences</a>. This script will generate two figures.<br>
 <b>Transformation_List_Amino_Acid.csv:</b> The transformation database for the transformation analysis; only identifies putative amino acid transformations.<br>
 <b>install_packages_commands.txt:</b> A file to allow copying-and-pasting of R install package commands.<br>
+<br>
+The <b>AGU CZO:Watershed Workshop 2019</b> folder contains the necessary files for the FTICR tutorial given at that workshop.

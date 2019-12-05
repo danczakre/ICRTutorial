@@ -5,7 +5,7 @@
 # Options
 freq_thresh = 0 # Adjusts the amount of data which is plotted based upon occurence frequency
                 # 0 will plot all data; 100 will plot data that is present in 100% of the samples
-samp.num = 1 # This option will plot the Van Krevelen for 
+samp.num = 1 # This option will plot the Van Krevelen for the specified column/sample
 
 # Load necessary packages
 require(reshape2); require(ggplot2); require(easycsv)
@@ -59,15 +59,13 @@ freq.data = data[which(freq > freq_thresh),] # Creating data/mol objects based u
 freq.mol = mol[which(freq > freq_thresh),]
 
 # Plotting all data
-pdf(file = paste0("All Data - ", freq_thresh, " threshold.pdf"), width = 9)
-
-ggplot(data = freq.mol, aes(x = OtoC_ratio, y = HtoC_ratio)) +
+p = ggplot(data = freq.mol, aes(x = OtoC_ratio, y = HtoC_ratio)) +
   geom_point(aes(color = bs2_class)) + xlab("O:C") + ylab("H:C") + 
   ggtitle(paste0("All Data - ", freq_thresh, "% threshold")) +
   labs(color = "Bailey et al, 2017 - Boundary Set") + xlim(c(0, max(mol$OtoC_ratio))) + 
   ylim(c(0, max(mol$HtoC_ratio))) + theme_bw() + theme(axis.text = element_text(color = "black"))
 
-dev.off()
+ggsave(paste0("All Data - ", freq_thresh, " threshold.pdf"), plot = p, width = 9, height = 7)
 
 # Plotting one sample based upon selection
 if(samp.num > ncol(freq.data)){
@@ -76,12 +74,11 @@ if(samp.num > ncol(freq.data)){
 
 samp.mol = freq.mol[which(freq.data[,samp.num] > 0),]
 
-pdf(paste0(colnames(freq.data)[samp.num], " - ", freq_thresh, " threshold.pdf"), width = 9)
-
-ggplot(data = samp.mol, aes(x = OtoC_ratio, y = HtoC_ratio)) +
+p = ggplot(data = samp.mol, aes(x = OtoC_ratio, y = HtoC_ratio)) +
   geom_point(aes(color = bs2_class)) + xlab("O:C") + ylab("H:C") + 
   ggtitle(paste0(colnames(freq.data)[samp.num], " - ", freq_thresh, "% threshold")) +
   labs(color = "Bailey et al, 2017 - Boundary Set") + xlim(c(0, max(mol$OtoC_ratio))) + 
   ylim(c(0, max(mol$HtoC_ratio))) + theme_bw() + theme(axis.text = element_text(color = "black"))
 
-dev.off()
+ggsave(paste0(colnames(freq.data)[samp.num], " - ", freq_thresh, " threshold.pdf"), 
+       plot = p, width = 9, height = 7)

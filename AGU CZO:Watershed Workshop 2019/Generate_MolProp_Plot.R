@@ -72,15 +72,13 @@ for(i in 1:ncol(data)){
   sing.prop = rbind(sing.prop, temp)
 } # Creating an object for the single propertys
 
-pdf(paste0(property, " Distribution Plot.pdf"), width = 4, height = 3)
-
-ggplot(sing.prop, aes(x = Samples, y = Property)) +
+p = ggplot(sing.prop, aes(x = Samples, y = Property)) +
   geom_boxplot() + xlab(NULL) + ylab(property) +
   ggtitle(paste0(property, " Distribution Plot")) +
   theme_bw() + theme(axis.text = element_text(color = "black"),
                      axis.text.x = element_text(angle = 90, vjust = 1, hjust = 0.5))
 
-dev.off()
+ggsave(paste0(property, " Distribution Plot.pdf"), plot = p, width = 4, height = 3)
 
 # Creating empty object to store average molecular property values
 mol.info = data.frame(NOSC = rep(NA, ncol(data)), AI = NA, DBE = NA, N = NA, S = NA, P = NA, Peaks = NA, 
@@ -102,13 +100,11 @@ for(i in 1:ncol(data)){
 mol.info = melt(as.matrix(mol.info)) # Converting data to long format for better plotting in ggplot
 
 # Plotting bar plots
-pdf("Molecular Characteristics by Sample.pdf", width = 5, height = 9)
-
-ggplot(mol.info, aes(x = Var1, y = value)) +
+p = ggplot(mol.info, aes(x = Var1, y = value)) +
   geom_bar(stat = "identity", aes(fill = Var2)) + facet_grid(Var2~., scales = "free_y") +
   xlab(NULL) + ggtitle("Molecular Characterisitics by Sample") +
   theme_bw() + theme(axis.text = element_text(color = "black"),
                      axis.text.x = element_text(angle = 90, vjust = 1, hjust = 0.5),
                      legend.position = "none")
 
-dev.off()
+ggsave("Molecular Characteristics by Sample.pdf", plot = p, width = 5, height = 9)

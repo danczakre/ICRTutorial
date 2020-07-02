@@ -15,3 +15,5 @@ Such analyses are outlined in <a href=https://doi.org/10.1007/s11306-006-0029-z>
 <b>install_packages_commands.txt:</b> A file to allow copying-and-pasting of R install package commands.<br>
 <br>
 The <b>AGU CZO:Watershed Workshop 2019</b> folder contains the necessary files for the FTICR tutorial given at that workshop.
+<br>
+The <b> EMSL Summer School 2020 </b> folder contains all of the necessary files for the tutorial given during the summer school.

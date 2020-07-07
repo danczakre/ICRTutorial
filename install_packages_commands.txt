@@ -1,2 +1,10 @@
-install.packages(c(“vegan”, “reshape2”, “ggplot2”, “devtools”, ”dplyr”, “tidyr”, “easycsv”))
+install.packages('vegan')
+install.packages('reshape2')
+install.packages('ggplot2')
+install.packages('devtools')
+install.packages('dplyr')
+install.packages('tidyr')
+install.packages('easycsv')
+
+
 devtools::install_github("EMSL-Computing/ftmsRanalysis")

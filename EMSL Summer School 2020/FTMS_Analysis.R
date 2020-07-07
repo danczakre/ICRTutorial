@@ -4,7 +4,7 @@
 require(ftmsRanalysis) # package found at https://github.com/EMSL-Computing/ftmsRanalysis
 require(easycsv) # necessary to pick a directory using a GUI
 
-Sample_Name = "Columbia_Tutorial" # Sample name for output
+Sample_Name = "Kbase_Tutorial" # Sample name for output
 summary = F # This is a switch which will generate compound class and characteristics summary files
 
 ### Load in data ###

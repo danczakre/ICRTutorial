@@ -24,10 +24,6 @@ mol = read.csv(list.files(pattern = "Processed.*Mol.csv"), row.names = 1)
 # Ordering data
 data = data[,order(colnames(data))]
 
-# Removing unnecessary information from sample names
-colnames(data) = gsub("Columbia_300A_", "", colnames(data))
-colnames(data) = gsub("_p08", "", colnames(data))
-
 
 # ################## #
 #### Error Checks ####
